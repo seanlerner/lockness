@@ -1,26 +1,26 @@
 module Lockness
   class Edit
 
-    attr_reader :secret_file,
+    attr_reader :encrypted_file,
                 :content,
                 :temp_file
 
     def initialize
-      @secret_file = SecretFile.new
-      @content     = Content.new
+      @encrypted_file = EncryptedFile.new(path: PathBuilder.path)
+      @content     = Content.new(encrypted_file: encrypted_file)
       @temp_file   = Tempfile.new
     end
 
     def edit
       ensure_temp_file_deleted
 
-      if secret_file.exist?
+      if encrypted_file.exist?
         edit_existing
       else
         edit_new
       end
 
-      puts "File saved: #{secret_file.encrypted_path}"
+      puts "File saved: #{encrypted_file.encrypted_path}"
     end
 
     private

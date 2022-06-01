@@ -1,16 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'active_support/all'
-require 'base64'
-require 'digest/sha2'
-require 'openssl'
-require 'securerandom'
-require 'tempfile'
-
-lib_file_glob = "#{__dir__}/../lib/**/*.rb"
-
-Dir.glob(lib_file_glob).each do |file|
-  require_relative file
-end
+require_relative '../lib/lockness'
 
 Lockness.start

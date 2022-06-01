@@ -1,10 +1,10 @@
 module Lockness
-  class SecretFile
+  class EncryptedFile
 
     attr_reader :path
 
-    def initialize
-      @path = build_path
+    def initialize(path:)
+      @path = path
     end
 
     def exist?
@@ -31,18 +31,6 @@ module Lockness
 
     def save(encrypted_content)
       File.write(encrypted_path, encrypted_content)
-    end
-
-    private
-
-    def build_path
-      path_arg = ARGV.last
-
-      if path_arg.starts_with?('/')
-        path_arg
-      else
-        File.join(Dir.pwd, path_arg)
-      end
     end
 
   end

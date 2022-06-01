@@ -17,4 +17,12 @@ module Lockness
     end
   end
 
+  def self.decrypt(path)
+    Decrypt.new(path: path).decrypt
+  end
+
 end
+
+require "lockness/setup"
+
+Lockness::Setup.setup

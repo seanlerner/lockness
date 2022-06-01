@@ -4,7 +4,7 @@ module Lockness
     def read
       ensure_exists
 
-      File.read(path)
+      File.read(path).strip
     end
 
     def generate
